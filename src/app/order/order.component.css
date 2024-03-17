@@ -43,3 +43,22 @@
   background-color: #CDE8ED;
   
 }
+
+.container {
+  display: flex;
+}
+
+.steps-container, .workflow-container {
+  flex: 1;
+}
+
+.steps-container {
+  margin-right: 10px; /* Espacement entre les deux composants */
+  border-radius: 15px;
+
+}
+
+.workflow-container{
+  background-color: white;
+  border-radius: 15px;
+}

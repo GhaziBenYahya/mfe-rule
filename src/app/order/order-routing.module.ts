@@ -1,21 +1,24 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { OrderComponent } from './order.component';
-import { WorkflowComponent } from './workflow/workflow.component';
-import { AddworkflowComponent } from './addworkflow/addworkflow.component';
-import { ListworkflowComponent } from './listworkflow/listworkflow.component';
-import { ManagesComponent } from './manages/manages.component';
-import { EditComponent } from './edit/edit.component';
+
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { AddRuleComponent } from './addRule/add-rule.component';
+import { ListRuleComponent } from './list-rule/list-rule.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const routes: Routes = [
 
 
-  { path: '', redirectTo: 'orderComponent/workflowComponent', pathMatch: 'full' },
+  { path: '', redirectTo: 'orderComponent/addRuleComponent', pathMatch: 'full' },
   
    // {path:'',component:OrderComponent},
 
@@ -25,34 +28,23 @@ const routes: Routes = [
         component: OrderComponent,
         children:[
           {
-            path: 'workflowComponent',
-            component: WorkflowComponent
-        
+            path: "addRuleComponent",
+            component: AddRuleComponent
           },
           {
-            path: 'addworkflowComponent',
-            component: AddworkflowComponent
-        
+            path: 'listRuleComponent',
+            component: ListRuleComponent
           },
           {
-            path: 'listworkflowComponent',
-            component: ListworkflowComponent
-        
+            path: 'headerComponent',
+            component: HeaderComponent
           },
           {
-            path: 'managesComponent',
-            component: ManagesComponent
-        
-          },
-          {
-            path: 'editComponent/:workflowId',
-            component: EditComponent
-        
-          },
-        ]
-    
-      },
-
+            path: 'sidebarComponent',
+            component: SidebarComponent
+          }
+          
+        ]}
 ];
 
 @NgModule({
@@ -60,7 +52,10 @@ const routes: Routes = [
     MatListModule, 
     MatExpansionModule,
     MatIconModule,
-    DragDropModule,],
+    DragDropModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,],
     exports: [RouterModule]
 })
 export class OrderRoutingModule {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-order',
@@ -7,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrl: './order.component.css'
 })
 export class OrderComponent {
+  private showStepInfo = false;
+  constructor(private zone: NgZone) {}
 
+  toggleStepInfo() {
+    this.zone.run(() => {
+      this.showStepInfo = !this.showStepInfo;
+    })
+
+
+}
+isStepInfoVisible() {
+  return this.showStepInfo;
+}
 }

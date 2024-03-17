@@ -1,5 +1,5 @@
 export class WorkflowDto {
-      workflowId :any
+      workflowId :any;
       workflowName: string = '';
       description: string = '';
       creationDate: Date = new Date();
