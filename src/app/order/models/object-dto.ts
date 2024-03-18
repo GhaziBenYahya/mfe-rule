@@ -1,6 +1,16 @@
 export class ObjectDto {
-    idObject :any
-    name: string = '';
-    type: string = '';
-    order : number | undefined;
+  objetId :any
+  objetName: string = '';
+  objetType: any;
+  objetAction: string = '';
+  objetContent: string = '';
+  creationDate: any;
+  orderObject : any;
+
+  constructor( objetType: any, ) {
+
+    this.objetType = objetType;
+
+  }
+
   }

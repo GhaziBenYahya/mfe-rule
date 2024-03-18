@@ -7,8 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ServiceService } from '../services/service.service';
-
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon'; 
@@ -20,13 +18,14 @@ import { AddRuleComponent } from './addRule/add-rule.component';
 import { ListRuleComponent } from './list-rule/list-rule.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { RuleService } from '../services/rule.service';
+import { ServiceService } from './service.service';
 
 @NgModule({
   declarations: [
     OrderComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    AddRuleComponent
   ],
   imports: [
     CommonModule,
@@ -41,9 +40,9 @@ import { RuleService } from '../services/rule.service';
     MatFormFieldModule,
     MatSelectModule,
     MatOptionModule,
-    AddRuleComponent,
+    
     ListRuleComponent,
   ],
-  providers: [RuleService], // Ajoutez votre service aux fournisseurs
+  providers: [ServiceService], // Ajoutez votre service aux fournisseurs
 })
 export class OrderModule { }

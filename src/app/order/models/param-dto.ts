@@ -1,6 +1,14 @@
 export class ParamDto {
-    paramId :any;
-    name: string = '';
-    order: string ='';
-    contenu : any;
+  parameterId :any;
+  parameterName: string = '';
+  parameterContent: string ='';
+  parameterRank : any;
+  objectId : any;
+  obj : any;
+  constructor( objectId: any ) {
+
+    this.objectId = objectId;
+
   }
+  }
+

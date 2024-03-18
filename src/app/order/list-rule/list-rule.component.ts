@@ -1,10 +1,8 @@
 import { NgClass, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RuleDto } from '../models/rule-dto';
-import { ServiceService } from '../../services/service.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { RuleService } from '../../services/rule.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 

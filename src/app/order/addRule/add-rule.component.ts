@@ -1,31 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ServiceService } from '../../services/service.service';
 import { Router } from '@angular/router';
 import { RuleDto } from '../models/rule-dto';
 import { ObjectDto } from '../models/object-dto';
 import { FormsModule } from '@angular/forms';
-import { RuleService } from '../../services/rule.service';
 import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
 import { ParamDto } from '../models/param-dto';
-import { ParamService } from '../../services/param.service';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-add-rule',
   templateUrl: './add-rule.component.html',
   styleUrl: './add-rule.component.css',
-  standalone: true,
-  imports: [FormsModule, CommonModule, NgClass, NgFor]
+  //standalone: true,
+  //imports: [FormsModule, CommonModule, NgClass, NgFor]
 })
 export class AddRuleComponent implements OnInit {
   
 
   // constructor( private srvParam: ParamService ,private srvRule: RuleService,private router: Router,){}
-  constructor(private srvRule: RuleService,private router: Router,){}
+  constructor(private srvRule: ServiceService,private router: Router,){}
+     IdObje : any = 0;
+   selectedObjectType: string = ''; 
 
-
-
-  selectedObjectType: string = ''; 
   
   showAddFormulaButton: boolean = false;
   showFormulaInputs: boolean = false;
@@ -33,8 +30,19 @@ export class AddRuleComponent implements OnInit {
   //objects: { name: string, order: string }[] = [];
   selectedItem = '2';
   Rule : RuleDto=new RuleDto()
-  Object : ObjectDto=new ObjectDto()
-  ParamDto: ParamDto[] = [];
+  
+  ParamDto: ParamDto = new ParamDto(this.IdObje);
+
+  //ParamDto: ParamDto =new ParamDto();
+  
+
+  
+  
+  // Autres propriétés...
+
+ 
+
+
 
     
   ngOnInit(): void {
@@ -46,7 +54,8 @@ console.log('succes')
 // })
   }
 
- 
+  ObjectDto: ObjectDto = new ObjectDto(this.selectedObjectType);
+  
 
 
  //positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
@@ -61,7 +70,7 @@ console.log('succes')
           this.router.navigate(['/mfe-rule/orderComponent/listRuleComponent']);
           Swal.fire('Valider', '', 'success');  
         },
-        (err) => {
+        (_err) => {
           // traitement du cas d'erreur
          console.log('err');
           Swal.fire('Invalid ', '', 'error');
@@ -74,20 +83,93 @@ console.log('succes')
 
   
 
- 
   onObjectTypeChange(event: Event) {
     this.selectedObjectType = (event.target as HTMLSelectElement).value;
     console.log(this.selectedObjectType)
   }
-  onAddFormulaClick(): void {
+  
+
+  onAddFormulaClick( ): void {
+
     this.showFormulaInputs = true;
   }
 
-  AddObjectClick(): void {
-    //this.srvRule.saveData().subscribe(() => {
-      console.log('data saved');
-      window.location.reload();
-    //});
+
+
+
+  AddObjectClick(): void{
+    console.log(this.ObjectDto);
+    this.srvRule.addObjet(this.ObjectDto)
+      .subscribe(
+        (result) => { // success
+          console.log(result);
+
+          
+          Swal.fire('Valider', '', 'success');  
+          console.log('data saved');
+          window.location.reload();
+        },
+        (_err) => {
+          // traitement du cas d'erreur
+         console.log('err');
+          Swal.fire('Invalid ', '', 'error');
+        }
+      
+        ); 
+
+
+  }
+
+  AddObjet(): void{
+    
+    console.log(this.ObjectDto);
+    //Ajouter un Objet 
+    this.srvRule.addObjet(this.ObjectDto)
+      .subscribe(
+        (result) => { // success
+          console.log(result);
+           this.IdObje = result
+           
+
+          
+          Swal.fire('Valider', '', 'success');  
+          console.log('data saved');
+         // window.location.reload();
+        },
+        (_err) => {
+          // traitement du cas d'erreur
+         console.log('err');
+          Swal.fire('Invalid ', '', 'error');
+        }
+      
+        ); 
+
+
+  }
+  AddParam(): void{
+    
+    console.log(this.ObjectDto);
+    //Ajouter un Param 
+    this.srvRule.addParam(this.ParamDto)
+      .subscribe(
+        (result) => { // success
+          console.log(result);
+           
+
+          
+          Swal.fire('Valider', '', 'success');  
+          console.log('data saved');
+         // window.location.reload();
+        },
+        (_err) => {
+          // traitement du cas d'erreur
+         console.log('err');
+          Swal.fire('Invalid ', '', 'error');
+        }
+      
+        ); 
+
+
   }
 
 
